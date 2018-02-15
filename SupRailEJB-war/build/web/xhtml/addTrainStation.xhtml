@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>SupRails - Add a station</title>
+    </h:head>
+    <h:body>
+            <h:form>
+                <fieldset>
+                    <h:outputLabel >Name : </h:outputLabel>
+                    <h:inputText id="name" value="#{addTrainStationBean.name}" required="true" size="20" maxlength="20" />
+                    <br /><br />
+                    <h:outputLabel >Address : </h:outputLabel>
+                    <h:inputText id="address" value="#{addTrainStationBean.adress}" required="true" size="20" maxlength="20" />
+                    <br /><br />
+                    <h:outputLabel >City : </h:outputLabel>
+                    <h:inputText id="city" value="#{addTrainStationBean.city}" required="true" size="20" maxlength="20" />
+                    <br /><br />
+                    <h:commandButton value="Add" action="#{addTrainStationBean.post_addStation()}" styleClass="sansLabel" />
+                    <br />
+                </fieldset>
+            </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>SupRails - Add a trip</title>
+    </h:head>
+    <h:body>
+            <h:form>
+                <fieldset>
+                    
+                    <h:outputLabel >Departure station : </h:outputLabel>
+                    <h:selectOneMenu id="select" value="#{addTripBean.currenTrainStationsD}"> 
+                        <f:selectItems value="#{addTripBean.trainStations}" var="trainD" itemValue="#{trainD.id}" itemLabel="#{trainD.name}"/>
+                    </h:selectOneMenu>
+                    <br /><br />
+                    
+                    <h:outputLabel >Arrival station : </h:outputLabel>
+                    <h:selectOneMenu id="select2" value="#{addTripBean.currenTrainStationsA}"> 
+                        <f:selectItems value="#{addTripBean.trainStations}" var="train" itemValue="#{train.id}" itemLabel="#{train.name}"/>
+                    </h:selectOneMenu>
+                    <br /><br />
+                    <h:outputLabel >Price : </h:outputLabel>
+                    <h:inputText id="city" value="#{addTripBean.priceparam}" required="true" size="20" maxlength="20" />
+                    <br /><br />
+                    <h:commandButton value="Add" action="#{addTripBean.post_addTrip()}" styleClass="sansLabel" />
+                    <br />
+                    
+                </fieldset>
+            </h:form>
+    </h:body>
+</html>

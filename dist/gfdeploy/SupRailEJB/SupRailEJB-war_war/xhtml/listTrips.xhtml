@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>SupRails - Trips</title>
+        <style>
+            table {
+                width: 80%; 
+                margin: auto;
+                border-collapse: collapse;
+            }
+            
+            table tr td, table tr th {
+                text-align: center;
+                border: 1px solid black;
+            }
+            fieldset{
+                display: flex;
+                justify-content: space-around;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <fieldset>
+
+                <h:outputLabel >Departure station : </h:outputLabel>
+                <h:selectOneMenu id="select" value="#{listTripsBean.currenTrainStationsDFilter}"> 
+                    <f:selectItems value="#{listTrainStationsBean.trainStations}" var="trainD" itemValue="#{trainD.id}" itemLabel="#{trainD.name}"/>
+                </h:selectOneMenu>
+                <br /><br />
+
+                <h:outputLabel >Arrival station : </h:outputLabel>
+                <h:selectOneMenu id="select2" value="#{listTripsBean.currenTrainStationsAFilter}"> 
+                    <f:selectItems value="#{listTrainStationsBean.trainStations}" var="train" itemValue="#{train.id}" itemLabel="#{train.name}"/>
+                </h:selectOneMenu>
+                <br /><br />
+                <h:outputLabel >Price : </h:outputLabel>
+                <h:inputText id="city" value="#{listTripsBean.price}" size="20" maxlength="20" />
+                <br /><br />
+                <h:commandButton value="Filter" action="#{listTripsBean.filter()}" styleClass="sansLabel" />
+                <br />
+
+            </fieldset><br /><br />
+            </h:form>
+        <h:dataTable value="#{listTripsBean.trips}" var="trip" border="2" cellspacing="1" cellpadding="1" rendered="#{not empty listTripsBean.trips}">
+            <h:column>
+                <f:facet name = "header">ID</f:facet>
+                #{trip.id}
+            </h:column>
+            <h:column>
+                <f:facet name = "header">Gare d'arrivé :</f:facet>
+                #{trip.arrivalStation.name} [#{trip.arrivalStation.city}]
+            </h:column>
+            <h:column>
+                <f:facet name = "header">Gare de départ :</f:facet>
+                #{trip.departureStation.name} [#{trip.departureStation.city}]
+            </h:column>
+            <h:column>
+               <f:facet name = "header">Prix :</f:facet>
+                #{trip.price}
+            </h:column>
+            <h:column rendered="#{empty user}">
+                <f:facet name = "header">Action :</f:facet>
+                <h:form>
+                    <h:commandLink action="#{removeTripBean.get_removeTrip(trip.id)}" value="Delete" />
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        
+        <h:outputText value="No Data to Display!" rendered="#{empty listTripsBean.trips}" />
+        <br/>
+        <h:panelGroup rendered="#{empty user}">
+            <h:form>
+                <h:commandButton value="Add a new trip" action="#{addTripBean.get_addTrip()}" />
+            </h:form>
+        </h:panelGroup>
+        <br/>
+        <h:link outcome="/index">Accueil</h:link>
+    </h:body>
+</html>
